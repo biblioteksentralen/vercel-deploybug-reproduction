@@ -14,7 +14,8 @@ Error occurred prerendering page "/apidoc/[version]". Read more: https://nextjs.
 Error: Minified React error #31; visit https://reactjs.org/docs/error-decoder.html?invariant=31&args[]=%5Bobject%20Promise%5D for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
 ```
 
-If you rename the file `/pages/apidoc/[version].tsx` to something like `/pages/doc/[version].tsx`, the build passes.
+Seems like this is related to the "@sentry/nextjs"-package. Seems like Automatic Instrumentation in Sentry wraps this route as if it was an api, probably because it starts with "api".
 
-Seems like this is related to the "@sentry/nextjs"-package. Maybe Automatic Instrumentation in Sentry wraps this route as if it was an api since it starts with "api"?
- 
+## Two things that makes the build pass:
+* If you rename the file `/pages/apidoc/[version].tsx` to something like `/pages/doc/[version].tsx`, the build passes.
+* If you set `autoInstrumentServerFunctions: false` in next.config.js

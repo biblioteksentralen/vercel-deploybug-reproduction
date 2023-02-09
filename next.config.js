@@ -3,6 +3,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const config = {
   sentry: {
     hideSourceMaps: false, // Only works for production builds
+    // autoInstrumentServerFunctions: false, // uncomment this line for the build to pass
   },
 };
 
